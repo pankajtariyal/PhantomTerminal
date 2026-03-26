@@ -78,5 +78,12 @@ public interface UtilFactory {
      * @param command the command containing the file name
      */
     void createFile(String command);
+
+    /**
+     * Read a file.
+     *
+     * @param command the command containing the file name
+     */
+    void readFile(String command);
 }
 

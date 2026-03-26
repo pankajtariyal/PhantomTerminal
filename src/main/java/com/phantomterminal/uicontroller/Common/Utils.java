@@ -294,4 +294,21 @@ public class Utils implements UtilFactory {
             throw new RuntimeException(e);
         }
     }
+
+    /**
+     * Read a file in the current directory.
+     *
+     * @param command the command containing file name
+     */
+    @Override
+    public void readFile(String command) {
+        String[] splitCommand = command.split(" ");
+        File file = CommonMethods.twoWordCommand(command, splitCommand[0]);
+        try {
+            CommonMethods.readFile(file);
+        } catch (IOException e) {
+            CommonVariable.outputAreaCommon.appendText(">> Something went wrong\n");
+            throw new RuntimeException(e);
+        }
+    }
 }

@@ -1,6 +1,6 @@
 package com.phantomterminal.uicontroller.Common;
 
-import java.io.File;
+import java.io.*;
 import java.util.List;
 
 /**
@@ -70,5 +70,15 @@ public class CommonMethods {
 
         String tempPath = currentPath + File.separator + dirName;
         return new File(tempPath);
+    }
+
+    public static void readFile(File file) throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(file));
+        StringBuilder sb = new StringBuilder();
+        String line = "";
+        while ((line=reader.readLine())!=null){
+            CommonVariable.outputAreaCommon.appendText(line + "\n");
+        }
+        reader.close();
     }
 }

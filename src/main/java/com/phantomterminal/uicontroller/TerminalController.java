@@ -78,6 +78,10 @@ public class TerminalController implements Initializable {
                 utilFactory.createFile(command);
                 break;
 
+            case "cat":
+                utilFactory.readFile(command);
+                break;
+
             case "ioexits":
                 utilFactory.isFileExits(outputArea, command);
                 break;
