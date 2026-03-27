@@ -1,4 +1,4 @@
-package com.phantomterminal.uicontroller.Common;
+package com.phantomterminal.common;
 
 import javafx.scene.control.TextArea;
 
