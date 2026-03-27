@@ -5,19 +5,75 @@ import com.phantomterminal.common.CommonVariable;
 import java.io.IOException;
 import java.util.List;
 
-public class HelpCommand implements Command{
+/**
+ * The HelpCommand class provides a list of all supported commands
+ * available in the PhantomTerminal application.
+ *
+ * <p>This command prints a help guide describing the syntax and
+ * purpose of each command supported by the terminal.</p>
+ *
+ * <p>Category: File and Directory Operations</p>
+ *
+ * Supported commands include:
+ * <ul>
+ *     <li>ls - List files in a directory</li>
+ *     <li>mkdir - Create a directory</li>
+ *     <li>rmdir - Remove a file or directory</li>
+ *     <li>cd - Change directory</li>
+ *     <li>touch - Create a new file</li>
+ *     <li>cat - Display file contents</li>
+ *     <li>ioexists - Check if a file exists</li>
+ * </ul>
+ *
+ * This command prints the help information to the terminal output area.
+ *
+ * @author Abhishek Tadiwal
+ * @version 1.0
+ */
+public class HelpCommand implements Command {
+
+    /**
+     * Executes the help command.
+     *
+     * <p>This method prints a list of available terminal commands
+     * along with their descriptions and usage syntax.</p>
+     *
+     * @param args list of arguments passed with the help command (not used)
+     * @throws IOException if an I/O error occurs while executing the command
+     */
     @Override
     public void execute(List<String> args) throws IOException {
-        CommonVariable.outputAreaCommon.appendText(">File Operation:\n");
-        CommonVariable.outputAreaCommon.appendText("> ls  -- List all file of current directory.\n");
-        CommonVariable.outputAreaCommon.appendText("> ls <path> -- List all file of given path.\n");
-        CommonVariable.outputAreaCommon.appendText("> ls -a  -- List all file including hidden file of current directory.\n");
-        CommonVariable.outputAreaCommon.appendText("> mkdir <directory name[]>  -- create directory in current path.\n");
-        CommonVariable.outputAreaCommon.appendText("> rmdir <delete directory or file>  -- delete file or directory in current path.\n");
-        CommonVariable.outputAreaCommon.appendText("> cd <directory path (absolute or relative)> -- move to child directory from parent directory\n");
-        CommonVariable.outputAreaCommon.appendText("> cd ..  -- move to parent directory.\n");
-        CommonVariable.outputAreaCommon.appendText("> ioexits <File path> File exits -- Check for file exits or not.\n");
-        CommonVariable.outputAreaCommon.appendText("> touch <file name[]> -- create file in current directory\n");
-        CommonVariable.outputAreaCommon.appendText("> cat <file name> -- read file in current directory\n");
+
+        CommonVariable.outputAreaCommon.appendText("> File Operations:\n");
+
+        CommonVariable.outputAreaCommon.appendText(
+                "> ls  - Lists all files and directories in the current directory.\n");
+
+        CommonVariable.outputAreaCommon.appendText(
+                "> ls <path> - Lists files and directories of the specified path.\n");
+
+        CommonVariable.outputAreaCommon.appendText(
+                "> ls -a  - Lists all files including hidden files in the current directory.\n");
+
+        CommonVariable.outputAreaCommon.appendText(
+                "> mkdir <directory_name>  - Creates a new directory in the current path.\n");
+
+        CommonVariable.outputAreaCommon.appendText(
+                "> rmdir <name>  - Deletes a specified file or directory from the current path.\n");
+
+        CommonVariable.outputAreaCommon.appendText(
+                "> cd <path> - Changes the current directory to the specified path (absolute or relative).\n");
+
+        CommonVariable.outputAreaCommon.appendText(
+                "> cd ..  - Moves to the parent directory.\n");
+
+        CommonVariable.outputAreaCommon.appendText(
+                "> ioexists <file_path> - Checks whether the specified file exists.\n");
+
+        CommonVariable.outputAreaCommon.appendText(
+                "> touch <file_name> - Creates a new empty file in the current directory.\n");
+
+        CommonVariable.outputAreaCommon.appendText(
+                "> cat <file_name> - Displays the content of a file.\n");
     }
 }

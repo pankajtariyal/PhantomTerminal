@@ -7,36 +7,87 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
+/**
+ * The {@code MkdirCommand} class implements the {@link Command} interface
+ * and provides functionality similar to the Linux <b>mkdir</b> command.
+ *
+ * <p>This command creates one or more directories in the current
+ * working directory of the PhantomTerminal.</p>
+ *
+ * <h3>Features</h3>
+ * <ul>
+ *     <li>Create single directory</li>
+ *     <li>Create multiple directories in one command</li>
+ *     <li>Supports relative paths</li>
+ * </ul>
+ *
+ * <h3>Examples</h3>
+ * <pre>
+ * mkdir test
+ * mkdir dir1 dir2 dir3
+ * mkdir projects/java
+ * </pre>
+ *
+ * <p>If a directory already exists, an error message is displayed.</p>
+ *
+ * <p>The base path for directory creation is taken from
+ * {@link CommonVariable#currentPath}.</p>
+ *
+ * @author Abhishek
+ * @version 1.0
+ */
 public class MkdirCommand implements Command {
+
+    /**
+     * Executes the mkdir command to create directories.
+     *
+     * @param args command arguments where:
+     *             <ul>
+     *                 <li>args[0] → command name ("mkdir")</li>
+     *                 <li>args[1..n] → directory names</li>
+     *             </ul>
+     */
     @Override
     public void execute(List<String> args) {
-        if(args.size()<2){
+
+        // Check if directory name is provided
+        if(args.size() < 2){
             CommonVariable.outputAreaCommon.appendText("mkdir: missing operand\n");
             return;
         }
+
         String directory = "";
-        for(int i=1;i<args.size();i++){
+
+        // Iterate through all provided directory names
+        for(int i = 1; i < args.size(); i++){
+
             directory = args.get(i);
-            String directoryPath = CommonVariable.currentPath + File.separator + directory;
+
+            // Create path object
             Path path = Paths.get(directory);
-            File file = path.toFile();
-            // If relative path → append currentPath
+
+            // If path is relative, attach current working directory
             if(!path.isAbsolute()){
                 path = Paths.get(CommonVariable.currentPath, directory);
             }
+
+            File file = path.toFile();
+
+            // Check if directory already exists
             if(file.exists() && file.isDirectory()){
-                CommonVariable.outputAreaCommon.appendText(directory+" directory is already exits\n");
+                CommonVariable.outputAreaCommon.appendText(directory + " directory is already exits\n");
                 return;
             }
 
+            // Create directory (including parent directories if needed)
             boolean mkdir = file.mkdirs();
+
             if(!mkdir){
-                CommonVariable.outputAreaCommon.appendText("Failed to create "+ directory + " Directory\n");
+                CommonVariable.outputAreaCommon.appendText("Failed to create " + directory + " Directory\n");
                 return;
-            }else {
+            } else {
                 System.out.println("created successfully directory of: " + directory);
             }
         }
-
     }
 }
