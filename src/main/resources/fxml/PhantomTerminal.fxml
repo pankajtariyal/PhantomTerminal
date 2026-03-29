@@ -3,11 +3,15 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <VBox prefHeight="800.0" prefWidth="1000.0" spacing="5" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.phantomterminal.uicontroller.TerminalController">
 
     <!-- Output area -->
-    <TextArea fx:id="outputArea" editable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400" style="-fx-control-inner-background: black; -fx-text-fill: lime;" wrapText="true" VBox.vgrow="ALWAYS" />
+    <TextArea fx:id="outputArea" editable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefColumnCount="5" prefHeight="400" prefRowCount="5" style="-fx-control-inner-background: black; -fx-text-fill: lime;" wrapText="true" VBox.vgrow="ALWAYS">
+      <font>
+         <Font size="16.0" />
+      </font></TextArea>
 
     <!-- Input field -->
     <TextField fx:id="inputField" onAction="#handleCommand" prefHeight="50.0" prefWidth="1000.0" promptText="Type command here..." style="-fx-control-inner-background: black; -fx-text-fill: white;" />

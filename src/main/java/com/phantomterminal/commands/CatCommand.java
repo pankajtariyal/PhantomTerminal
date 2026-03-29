@@ -2,12 +2,8 @@ package com.phantomterminal.commands;
 
 import com.phantomterminal.common.CommonVariable;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.*;
+import java.nio.file.*;
 import java.util.List;
 
 /**
@@ -76,8 +72,8 @@ public class CatCommand implements Command {
         // Handle file creation using "cat > filename"
         if(args.get(1).equals(">")){
 
-            if(args.size() != 3){
-                CommonVariable.outputAreaCommon.appendText("Usage cat > filename.\n");
+            if(args.size() != 4){
+                CommonVariable.outputAreaCommon.appendText("Usage cat > filename \"text\"\n");
                 return;
             }
 
@@ -89,10 +85,8 @@ public class CatCommand implements Command {
             }
 
             File file = path.toFile();
-
-            if(file.exists()){
-                System.out.println("exists file");
-            }else{
+            String writeValue = args.get(3) + "\n";
+            if(!Files.exists(path)){
                 if(file.createNewFile()){
                     System.out.println(fileName + " file created successfully");
                 }else{
@@ -100,7 +94,11 @@ public class CatCommand implements Command {
                             "Failed to create file " + fileName + "\n");
                     return;
                 }
+                System.out.println("text written successfully");
             }
+            System.out.println("write value " + writeValue);
+            Files.write(path,writeValue.getBytes(),StandardOpenOption.APPEND);
+            System.out.println("text written successfully and created");
             return;
         }
 

@@ -3,7 +3,10 @@ package com.phantomterminal;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
+
+import java.util.Objects;
 
 /**
  * Entry point of the PhantomTerminal application.
@@ -36,9 +39,11 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/PhantomTerminal.fxml"));
-        Scene scene = new Scene(loader.load(), 800, 600);
+        Scene scene = new Scene(loader.load(), 1000, 800);
+        Image image = new Image(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("logo/phantomlogo.png")));
+        stage.getIcons().add(image);
         stage.setResizable(false);
-        stage.setTitle("Mini Terminal");
+        stage.setTitle("Phantom Terminal");
         stage.setScene(scene);
         stage.show();
     }

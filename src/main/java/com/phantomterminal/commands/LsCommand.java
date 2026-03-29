@@ -4,10 +4,15 @@ import com.phantomterminal.common.CommonVariable;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.nio.file.*;
+import java.nio.file.attribute.FileTime;
+import java.nio.file.attribute.PosixFilePermission;
+import java.nio.file.attribute.PosixFilePermissions;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Stream;
 
 /**
@@ -123,9 +128,42 @@ public class LsCommand implements Command {
         try(Stream<Path> list = Files.list(path)){
             list
                     .filter(p -> showHidden || !p.toFile().isHidden())
-                    .forEach(file ->
-                            CommonVariable.outputAreaCommon.appendText("-" + file.getFileName() + "\n")
-                    );
+                    .forEach(p ->{
+                        if(isLongFormate){
+                            try {
+                                String permission = "r--r--";
+                                String type = Files.isDirectory(p)?"d":"-";
+                                if(FileSystems.getDefault().supportedFileAttributeViews().contains("posix")){
+                                    Set<PosixFilePermission> posixFilePermissions = Files.getPosixFilePermissions(p);
+                                    permission = PosixFilePermissions.toString(posixFilePermissions);
+                                }else{
+
+                                    // fake remaining permissions
+                                    permission = (p.toFile().canRead() ? "r" : "-") +
+                                            (p.toFile().canWrite() ? "w" : "-") +
+                                            (p.toFile().canExecute() ? "x" : "-") +
+                                            "r--r--";
+                                }
+
+                                String owner = Files.getOwner(p).getName();
+
+                                long size = Files.size(p);
+                                FileTime fileTime = Files.getLastModifiedTime(p);
+
+                                String date = new SimpleDateFormat("MMM dd")
+                                        .format(new Date(fileTime.toMillis()));
+                                long countSubFiles = Files.isDirectory(p)?Files.list(p).count():1;
+                                CommonVariable.outputAreaCommon.appendText(type + permission + " " +
+                                        countSubFiles + " " + owner + " group " +
+                                        size + " " + date + " " +
+                                        p.toFile().getName() + "\n");
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }else{
+                            CommonVariable.outputAreaCommon.appendText("-" + p.getFileName() + "\n");
+                        }
+                    });
         }
     }
 }

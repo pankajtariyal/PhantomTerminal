@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 
 import java.io.IOException;
 import java.net.URL;
@@ -115,5 +116,6 @@ public class TerminalController implements Initializable {
 
         // Show initial terminal prompt
         outputArea.appendText(CommonVariable.currentPath + ">\n");
+        inputField.setTooltip(new Tooltip("Enter command here.."));
     }
 }
