@@ -69,6 +69,7 @@ public class CommandRegistry {
         commands.put("clear", new ClearCommand());
         commands.put("help", new HelpCommand());
         commands.put("cat", new CatCommand());
+        commands.put("mv", new MVCommand());
     }
 
     /**

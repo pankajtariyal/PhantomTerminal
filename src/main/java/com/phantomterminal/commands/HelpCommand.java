@@ -75,5 +75,9 @@ public class HelpCommand implements Command {
 
         CommonVariable.outputAreaCommon.appendText(
                 "> cat <file_name> - Displays the content of a file.\n");
+
+        CommonVariable.outputAreaCommon.appendText(
+                "> mv <file_name_Old> <newFileName> - Rename a file.\n");
+
     }
 }
