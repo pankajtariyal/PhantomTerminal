@@ -6,28 +6,27 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * The {@code FileCommand} interface represents a generic command
- * in the PhantomTerminal application.
+ * The {@code FileCommand} interface represents a contract for all
+ * file-related commands in the PhantomTerminal application.
  *
- * <p>All terminal commands such as <b>cd, ls, mkdir, touch, cat, clear</b>
- * implement this interface. It defines a common contract that every
- * command must follow.</p>
+ * <p>Commands such as <b>cd, ls, mkdir, touch, cat, mv, rm</b> implement
+ * this interface. Each command class provides its own implementation
+ * of the {@link #execute(List)} method, which contains the logic
+ * required to perform the specific file operation.</p>
  *
- * <p>Each command class must provide its own implementation of the
- * {@link #execute(List)} method, which contains the logic required
- * to perform the specific command operation.</p>
+ * <p>This design follows the <b>Command Design Pattern</b>, where
+ * each terminal command is encapsulated as a separate class that
+ * implements a common interface.</p>
  *
- * <h3>Example</h3>
+ * <h3>Example Implementation</h3>
  * <pre>
  * public class ClearFileCommand implements FileCommand {
- *     public void execute(List<String> args) {
+ *     @Override
+ *     public void execute(List<String> args) throws IOException {
  *         // command logic
  *     }
  * }
  * </pre>
- *
- * <p>This design follows the <b>FileCommand Design Pattern</b>, where
- * each command is encapsulated as a separate class.</p>
  *
  * @author Abhishek Tadiwal
  * @version 1.0
@@ -36,15 +35,18 @@ import java.util.List;
 public interface FileCommand extends Command {
 
     /**
-     * Executes the command with the provided arguments.
+     * Executes the command using the provided arguments.
      *
-     * @param args a list of command arguments where:
-     *             <ul>
-     *                 <li>args[0] represents the command name</li>
-     *                 <li>args[1..n] represent command parameters</li>
-     *             </ul>
+     * <p>The argument list follows the typical terminal structure:</p>
+     * <ul>
+     *     <li>{@code args[0]} – the command name</li>
+     *     <li>{@code args[1..n]} – command parameters</li>
+     * </ul>
      *
-     * @throws IOException if an input/output error occurs during execution
+     * @param args list of command arguments
+     *
+     * @throws IOException if an I/O error occurs while executing
+     *                     the command
      */
     void execute(List<String> args) throws IOException;
 }

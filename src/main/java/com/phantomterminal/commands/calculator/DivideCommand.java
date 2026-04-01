@@ -1,45 +1,60 @@
 package com.phantomterminal.commands.calculator;
 
-import com.phantomterminal.common.CommonVariable;
-import com.phantomterminal.common.calculatorUtil.CalculatorUtil;
-import com.phantomterminal.common.calculatorUtil.CalculatorUtilImp;
-import com.sun.org.apache.xpath.internal.operations.Div;
+/**
+ * The {@code DivideCommand} class represents the calculator command
+ * responsible for performing division operations in the
+ * PhantomTerminal application.
+ *
+ * <p>This class extends {@link AbstractCalculatorCommand} and provides
+ * the specific operator and command name required to execute
+ * division calculations.</p>
+ *
+ * <p>The core logic such as argument validation, numeric parsing,
+ * stack management, and result output is handled by the
+ * {@link AbstractCalculatorCommand} base class.</p>
+ *
+ * <h3>Example Usage</h3>
+ * <pre>
+ * div 20 5
+ * </pre>
+ *
+ * Output:
+ * <pre>
+ * 4
+ * </pre>
+ *
+ * <p>The command expects operands to be provided as
+ * space-separated numeric values.</p>
+ *
+ * <p>Division operations are performed using
+ * {@link java.math.BigDecimal} to maintain high precision
+ * in calculations.</p>
+ *
+ * @author Abhishek Tadiwal
+ * @version 1.0
+ */
+public class DivideCommand extends AbstractCalculatorCommand {
 
-import java.io.IOException;
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.util.List;
-import java.util.Stack;
-
-public class DivideCommand implements CalculatorCommand{
-    private final CalculatorUtil calculatorUtil;
-
-    public DivideCommand(){
-        super();
-        this.calculatorUtil = CalculatorUtilImp.getInstance();
-    }
+    /**
+     * Returns the mathematical operator used for division.
+     *
+     * @return the division operator "/"
+     */
     @Override
-    public void execute(List<String> args) throws IOException {
-        if(args.size()<3){
-            CommonVariable.outputAreaCommon.appendText("error: add missing operand\n");
-            return;
-        }
-        List<String> tokens = args.subList(1,args.size());
-        System.out.println(tokens);
-        Stack<BigDecimal> numbers = new Stack<>();
-        for(int i=0; i<tokens.size(); i++){
-            String token = tokens.get(i);
-            if(calculatorUtil.isNumber(token)){
-                System.out.println(token);
-                numbers.add(new BigDecimal(token));
-            }else{
-                CommonVariable.outputAreaCommon.appendText("warning: div: only number allowed with spaces");
-            }
-        }
-        while (!numbers.isEmpty() && numbers.size()!=1){
-            calculatorUtil.performOperation(numbers,"/");
-        }
-        BigDecimal value = numbers.pop();
-        CommonVariable.outputAreaCommon.appendText(value+"\n");
+    protected String getOperator() {
+        return "/";
+    }
+
+    /**
+     * Returns the command name used in the terminal.
+     *
+     * <p>This name is used in error and warning messages
+     * during command execution.</p>
+     *
+     * @return the command name "div"
+     */
+    @Override
+    protected String getCommandName() {
+        return "div";
     }
 }

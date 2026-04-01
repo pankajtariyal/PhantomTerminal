@@ -35,7 +35,7 @@ import java.util.Objects;
  * <p>The current working directory is stored in
  * {@link CommonVariable#currentPath}.</p>
  *
- * @author Abhishek
+ * @author Abhishek Tadiwal
  * @version 1.0
  */
 public class RmdirFileCommand implements FileCommand {
