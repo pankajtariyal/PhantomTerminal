@@ -1,4 +1,4 @@
-package com.phantomterminal.commands;
+package com.phantomterminal.commands.fileOperationCommand;
 
 import com.phantomterminal.common.CommonVariable;
 
@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 import java.util.List;
 
 /**
- * The {@code CdCommand} class implements the {@link Command} interface
+ * The {@code CdFileCommand} class implements the {@link FileCommand} interface
  * and provides functionality similar to the Linux <b>cd</b> command.
  *
  * <p>This command is used to change the current working directory
@@ -41,7 +41,7 @@ import java.util.List;
  * @author Abhishek Tadiwal
  * @version 1.0
  */
-public class CdCommand implements Command {
+public class CdFileCommand implements FileCommand {
 
     /**
      * Executes the cd command to change the current working directory.

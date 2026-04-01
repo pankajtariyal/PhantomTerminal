@@ -1,6 +1,8 @@
 package com.phantomterminal.engine;
 
-import com.phantomterminal.commands.*;
+import com.phantomterminal.commands.Command;
+import com.phantomterminal.commands.fileOperationCommand.FileCommand;
+import com.phantomterminal.commands.fileOperationCommand.LsFileCommand;
 import com.phantomterminal.common.CommonVariable;
 
 import java.io.IOException;
@@ -22,7 +24,7 @@ import java.util.List;
  *     <li>The command name is extracted from the parsed input.</li>
  *     <li>The corresponding command implementation is retrieved using
  *         {@link CommandRegistry#getCommand(String)}.</li>
- *     <li>If the command exists, its {@link Command#execute(List)} method is executed.</li>
+ *     <li>If the command exists, its {@link FileCommand#execute(List)} method is executed.</li>
  *     <li>If the command does not exist, an error message is displayed.</li>
  * </ol>
  *
@@ -30,11 +32,11 @@ import java.util.List;
  * <pre>
  * Input:  ls -a
  * Parsed: ["ls", "-a"]
- * Action: Executes {@link LsCommand}
+ * Action: Executes {@link LsFileCommand}
  * </pre>
  *
  * <p>This class follows a command-based architecture where each command
- * is implemented as a separate class that implements the {@link Command}
+ * is implemented as a separate class that implements the {@link FileCommand}
  * interface.</p>
  *
  * @author Abhishek
@@ -58,28 +60,28 @@ public class CommandEngine {
      */
     public static void executeCommand(String input) throws IOException {
 
-        // Parse input command into tokens
+        // Parse input fileCommand into tokens
         List<String> inputSplit = CommandParser.parseCommand(input);
 
-        System.out.println("command " + inputSplit);
+        System.out.println("fileCommand " + inputSplit);
 
-        // Handle empty command input
+        // Handle empty fileCommand input
         if(inputSplit.isEmpty()){
             CommonVariable.outputAreaCommon.appendText(">>\n");
             return;
         }
 
-        // Extract command name
+        // Extract fileCommand name
         String commandName = inputSplit.get(0);
 
         System.out.println(commandName + " name");
 
-        // Retrieve command implementation from registry
+        // Retrieve fileCommand implementation from registry
         Command command = CommandRegistry.getCommand(commandName);
 
-        // If command is not found
+        // If fileCommand is not found
         if(command == null){
-            CommonVariable.outputAreaCommon.appendText(">> Unknown command: " + commandName + "\n");
+            CommonVariable.outputAreaCommon.appendText(">> Unknown fileCommand: " + commandName + "\n");
             return;
         }
 

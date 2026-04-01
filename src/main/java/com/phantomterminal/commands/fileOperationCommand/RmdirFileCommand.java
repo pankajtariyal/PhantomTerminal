@@ -1,4 +1,4 @@
-package com.phantomterminal.commands;
+package com.phantomterminal.commands.fileOperationCommand;
 
 import com.phantomterminal.common.CommonVariable;
 
@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * The {@code RmdirCommand} class implements the {@link Command} interface
+ * The {@code RmdirFileCommand} class implements the {@link FileCommand} interface
  * and provides functionality similar to the Linux <b>rmdir</b> command.
  *
  * <p>This command removes one or more directories from the file system.
@@ -38,7 +38,7 @@ import java.util.Objects;
  * @author Abhishek
  * @version 1.0
  */
-public class RmdirCommand implements Command {
+public class RmdirFileCommand implements FileCommand {
 
     /**
      * Executes the rmdir command to delete directories.

@@ -1,4 +1,4 @@
-package com.phantomterminal.commands;
+package com.phantomterminal.commands.fileOperationCommand;
 
 import com.phantomterminal.common.CommonVariable;
 
@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * The {@code ClearCommand} class implements the {@link Command} interface
+ * The {@code ClearFileCommand} class implements the {@link FileCommand} interface
  * and provides functionality similar to the Linux <b>clear</b> command.
  *
  * <p>This command clears the terminal output area in the PhantomTerminal
@@ -30,7 +30,7 @@ import java.util.List;
  * @author Abhishek Tadiwal
  * @version 1.0
  */
-public class ClearCommand implements Command {
+public class ClearFileCommand implements FileCommand {
 
     /**
      * Executes the clear command which removes all text from the terminal output.

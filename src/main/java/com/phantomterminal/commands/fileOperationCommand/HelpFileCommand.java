@@ -1,4 +1,4 @@
-package com.phantomterminal.commands;
+package com.phantomterminal.commands.fileOperationCommand;
 
 import com.phantomterminal.common.CommonVariable;
 
@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * The HelpCommand class provides a list of all supported commands
+ * The HelpFileCommand class provides a list of all supported commands
  * available in the PhantomTerminal application.
  *
  * <p>This command prints a help guide describing the syntax and
@@ -30,7 +30,7 @@ import java.util.List;
  * @author Abhishek Tadiwal
  * @version 1.0
  */
-public class HelpCommand implements Command {
+public class HelpFileCommand implements FileCommand {
 
     /**
      * Executes the help command.
@@ -78,6 +78,24 @@ public class HelpCommand implements Command {
 
         CommonVariable.outputAreaCommon.appendText(
                 "> mv <file_name_Old> <newFileName> - Rename a file.\n");
+
+        CommonVariable.outputAreaCommon.appendText(
+                "> Calculation Operations:\n");
+
+        CommonVariable.outputAreaCommon.appendText(
+                "> add num1 num2 .... Operations: addition\n");
+
+        CommonVariable.outputAreaCommon.appendText(
+                "> sub num1 num2 .... Operations: subtraction\n");
+
+        CommonVariable.outputAreaCommon.appendText(
+                "> mul num1 num2 .... Operations: multiplication\n");
+
+        CommonVariable.outputAreaCommon.appendText(
+                "> div num1 num2 .... Operations: divide\n");
+
+        CommonVariable.outputAreaCommon.appendText(
+                "> cal num1 expression num2 .... Operations: for all operation in one\n");
 
     }
 }

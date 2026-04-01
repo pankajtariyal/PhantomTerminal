@@ -1,6 +1,8 @@
 package com.phantomterminal.engine;
 
-import com.phantomterminal.commands.*;
+import com.phantomterminal.commands.Command;
+import com.phantomterminal.commands.calculator.*;
+import com.phantomterminal.commands.fileOperationCommand.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,7 +12,7 @@ import java.util.Map;
  * available terminal commands in the PhantomTerminal.
  *
  * <p>It maps command names (such as <b>ls</b>, <b>cd</b>, <b>mkdir</b>)
- * to their corresponding {@link Command} implementations.</p>
+ * to their corresponding {@link FileCommand} implementations.</p>
  *
  * <p>This registry allows the {@link CommandEngine} to dynamically
  * retrieve and execute commands based on the user input.</p>
@@ -27,20 +29,20 @@ import java.util.Map;
  * User Input: ls -a
  *
  * CommandEngine → asks CommandRegistry for "ls"
- * CommandRegistry → returns LsCommand instance
- * CommandEngine → executes LsCommand.execute()
+ * CommandRegistry → returns LsFileCommand instance
+ * CommandEngine → executes LsFileCommand.execute()
  * </pre>
  *
  * <h3>Registered Commands</h3>
  * <ul>
- *     <li>ls → {@link LsCommand}</li>
- *     <li>cd → {@link CdCommand}</li>
- *     <li>mkdir → {@link MkdirCommand}</li>
- *     <li>rmdir → {@link RmdirCommand}</li>
- *     <li>touch → {@link TouchCommand}</li>
- *     <li>clear → {@link ClearCommand}</li>
- *     <li>help → {@link HelpCommand}</li>
- *     <li>cat → {@link CatCommand}</li>
+ *     <li>ls → {@link LsFileCommand}</li>
+ *     <li>cd → {@link CdFileCommand}</li>
+ *     <li>mkdir → {@link MkdirFileCommand}</li>
+ *     <li>rmdir → {@link RmdirFileCommand}</li>
+ *     <li>touch → {@link TouchFileCommand}</li>
+ *     <li>clear → {@link ClearFileCommand}</li>
+ *     <li>help → {@link HelpFileCommand}</li>
+ *     <li>cat → {@link CatFileCommand}</li>
  * </ul>
  *
  * <p>The commands are initialized in a static block so that they are
@@ -61,27 +63,31 @@ public class CommandRegistry {
      * This block executes once when the class is loaded.
      */
     static {
-        commands.put("ls", new LsCommand());
-        commands.put("cd", new CdCommand());
-        commands.put("mkdir", new MkdirCommand());
-        commands.put("rmdir", new RmdirCommand());
-        commands.put("touch", new TouchCommand());
-        commands.put("clear", new ClearCommand());
-        commands.put("help", new HelpCommand());
-        commands.put("cat", new CatCommand());
-        commands.put("mv", new MVCommand());
+        commands.put("ls", new LsFileCommand());
+        commands.put("cd", new CdFileCommand());
+        commands.put("mkdir", new MkdirFileCommand());
+        commands.put("rmdir", new RmdirFileCommand());
+        commands.put("touch", new TouchFileCommand());
+        commands.put("clear", new ClearFileCommand());
+        commands.put("help", new HelpFileCommand());
+        commands.put("cat", new CatFileCommand());
+        commands.put("mv", new MVFileCommand());
+        commands.put("add", new AddCommand());
+        commands.put("sub", new SubtractCommand());
+        commands.put("mul", new MultiplicationCommand());
+        commands.put("div", new DivideCommand());
+        commands.put("cal", new AllCalculationOperation());
     }
 
     /**
      * Retrieves a command implementation based on the command name.
      *
      * @param name the command name entered by the user
-     * @return the corresponding {@link Command} implementation,
+     * @return the corresponding {@link FileCommand} implementation,
      *         or {@code null} if the command is not registered
      */
     public static Command getCommand(String name){
         System.out.println(name);
-        System.out.println(commands);
         return commands.get(name);
     }
 }

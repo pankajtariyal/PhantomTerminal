@@ -1,4 +1,4 @@
-package com.phantomterminal.commands;
+package com.phantomterminal.commands.fileOperationCommand;
 
 import com.phantomterminal.common.CommonVariable;
 
@@ -6,11 +6,10 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Date;
 import java.util.List;
 
 /**
- * The {@code TouchCommand} class implements the {@link Command} interface
+ * The {@code TouchFileCommand} class implements the {@link FileCommand} interface
  * and provides functionality similar to the Linux <b>touch</b> command.
  *
  * <p>This command creates one or more empty files in the file system.
@@ -38,7 +37,7 @@ import java.util.List;
  * @author Abhishek Tadiwal
  * @version 1.0
  */
-public class TouchCommand implements Command {
+public class TouchFileCommand implements FileCommand {
 
     /**
      * Executes the touch command to create new files.

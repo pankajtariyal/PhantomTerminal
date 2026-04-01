@@ -1,8 +1,7 @@
-package com.phantomterminal.commands;
+package com.phantomterminal.commands.fileOperationCommand;
 
 import com.phantomterminal.common.CommonVariable;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
 import java.nio.file.attribute.FileTime;
@@ -11,12 +10,11 @@ import java.nio.file.attribute.PosixFilePermissions;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Stream;
 
 /**
- * The {@code LsCommand} class implements the {@link Command} interface
+ * The {@code LsFileCommand} class implements the {@link FileCommand} interface
  * and provides functionality similar to the Linux <b>ls</b> command.
  *
  * <p>This command lists files and directories present in a given path
@@ -50,7 +48,7 @@ import java.util.stream.Stream;
  * @author Abhishek Tadiwal
  * @version 1.0
  */
-public class LsCommand implements Command {
+public class LsFileCommand implements FileCommand {
 
     /** Flag to determine whether hidden files should be displayed */
     private boolean showHidden = false;

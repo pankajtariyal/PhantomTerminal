@@ -1,4 +1,4 @@
-package com.phantomterminal.commands;
+package com.phantomterminal.commands.fileOperationCommand;
 
 import com.phantomterminal.common.CommonVariable;
 
@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 import java.util.List;
 
 /**
- * The {@code MkdirCommand} class implements the {@link Command} interface
+ * The {@code MkdirFileCommand} class implements the {@link FileCommand} interface
  * and provides functionality similar to the Linux <b>mkdir</b> command.
  *
  * <p>This command creates one or more directories in the current
@@ -36,7 +36,7 @@ import java.util.List;
  * @author Abhishek
  * @version 1.0
  */
-public class MkdirCommand implements Command {
+public class MkdirFileCommand implements FileCommand {
 
     /**
      * Executes the mkdir command to create directories.

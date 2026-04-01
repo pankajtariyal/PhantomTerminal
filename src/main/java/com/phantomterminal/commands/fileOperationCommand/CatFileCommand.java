@@ -1,4 +1,4 @@
-package com.phantomterminal.commands;
+package com.phantomterminal.commands.fileOperationCommand;
 
 import com.phantomterminal.common.CommonVariable;
 
@@ -36,7 +36,7 @@ import java.util.List;
  * @author Abhishek Tadiwal
  * @version 1.0
  */
-public class CatCommand implements Command {
+public class CatFileCommand implements FileCommand {
 
     /**
      * Flag used for future implementation of file write mode.

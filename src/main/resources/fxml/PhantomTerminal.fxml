@@ -14,6 +14,6 @@
       </font></TextArea>
 
     <!-- Input field -->
-    <TextField fx:id="inputField" onAction="#handleCommand" prefHeight="50.0" prefWidth="1000.0" promptText="Type command here..." style="-fx-control-inner-background: black; -fx-text-fill: white;" />
+    <TextField fx:id="inputField" onAction="#handleCommand" prefHeight="50.0" prefWidth="1000.0" promptText="Type fileCommand here..." style="-fx-control-inner-background: black; -fx-text-fill: white;" />
 
 </VBox>

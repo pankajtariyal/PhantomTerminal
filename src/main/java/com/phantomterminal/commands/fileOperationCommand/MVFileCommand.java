@@ -1,14 +1,13 @@
-package com.phantomterminal.commands;
+package com.phantomterminal.commands.fileOperationCommand;
 
 import com.phantomterminal.common.CommonVariable;
 
-import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.List;
 
-public class MVCommand implements Command{
+public class MVFileCommand implements FileCommand {
     @Override
     public void execute(List<String> args) throws IOException {
         if (args.size() < 3) {
@@ -38,27 +37,6 @@ public class MVCommand implements Command{
                 Files.move(path, dirPath, StandardCopyOption.REPLACE_EXISTING);
             }
         }else {
-//            Path source = Paths.get(args.get(1));
-//            if(!source.isAbsolute()){
-//                source = Paths.get(CommonVariable.currentPath, args.get(1));
-//            }
-//
-//            if(!Files.exists(source)){
-//                CommonVariable.outputAreaCommon.appendText("mv: cannot stat '" + source.getFileName() + "'\n");
-//                return;
-//            }
-//
-//            File file = dirPath.toFile();
-//            if(file.exists()){
-//                if(file.isDirectory()){
-//                    Files.move(source, dirPath);
-//                }else {
-//                    Files.move(source,dirPath,StandardCopyOption.REPLACE_EXISTING);
-//                }
-//            }else{
-//                Files.
-//            }
-
             Path source = Paths.get(args.get(1));
 
             if(!source.isAbsolute()){
