@@ -1,5 +1,7 @@
 package com.phantomterminal.common.calculatorUtil;
 
+import com.phantomterminal.common.CommonVariable;
+
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.Stack;
@@ -144,6 +146,10 @@ public class CalculatorUtilImp implements CalculatorUtil {
                 break;
 
             case "/":
+                if(num2.intValue()==2){
+                    CommonVariable.outputAreaCommon.appendText("can not divide by zero");
+                    return;
+                }
                 result = num1.divide(num2, MathContext.DECIMAL128);
                 break;
         }
